@@ -1,4 +1,4 @@
-package org.restservice.prog3springtd2;
+package org.td2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

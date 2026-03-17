@@ -1,4 +1,4 @@
-package org.restservice.prog3springtd2;
+package org.td2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
