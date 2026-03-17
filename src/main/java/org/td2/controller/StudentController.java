@@ -19,6 +19,6 @@ public class StudentController {
 
      @PostMapping("/students")
     public List<Student> createStudents(@RequestBody List<Student> students){
-         return service.createStudent(students);
+         return service.createStudents(students);
      }
 }
