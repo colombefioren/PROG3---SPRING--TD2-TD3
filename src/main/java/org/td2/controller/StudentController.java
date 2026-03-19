@@ -5,7 +5,6 @@ import org.td2.entity.Student;
 import org.td2.service.StudentService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class StudentController {
@@ -16,21 +15,18 @@ public class StudentController {
         this.service = service;
     }
 
-     @PostMapping("/students")
-    public List<Student> createStudents(@RequestBody List<Student> students){
-         return service.createStudents(students);
-     }
+    @PostMapping("/students")
+    public List<Student> createStudents(@RequestBody List<Student> students) {
+        return service.createStudents(students);
+    }
 
-     @GetMapping("/students")
+    @GetMapping("/students")
     public String getStudentNames(@RequestHeader("Accept") String accept) {
-        if("text/plain".equalsIgnoreCase(accept)) {
-            return service.getStudents()
-                    .stream()
-                    .map(s -> s.getFirstName() + " " + s.getLastName())
-                    .collect(Collectors.joining("\n"));
-        }else{
+        if ("text/plain".equalsIgnoreCase(accept)) {
+            return service.getStudentNames();
+        } else {
             return "Format non supporté";
         }
 
-     }
+    }
 }
