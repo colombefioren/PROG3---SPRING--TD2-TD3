@@ -23,4 +23,8 @@ public class StudentRepository {
         return list;
     }
 
+    public List<Student> getStudents() {
+        return list;
+    }
+
 }
