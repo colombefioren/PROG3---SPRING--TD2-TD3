@@ -1,5 +1,7 @@
 package org.td2.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.td2.entity.Student;
 import org.td2.service.StudentService;
@@ -16,8 +18,15 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public List<Student> createStudents(@RequestBody List<Student> students) {
-        return service.createStudents(students);
+    public ResponseEntity<List<Student>> createStudents(@RequestBody List<Student> students) {
+        try {
+
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body(service.createStudents(students));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @GetMapping("/students")
