@@ -30,13 +30,18 @@ public class StudentController {
     }
 
     @GetMapping("/students")
-    public String getStudentNames(@RequestHeader("Accept") String accept) {
-        if (accept.toLowerCase().contains("text/plain")
-                || accept.contains("*/*")) {
-            return service.getStudentNames();
-        } else {
-            return "Format non supporté";
+    public ResponseEntity<List<Student>> getStudents(@RequestHeader("Accept") String accept) {
+        try {
+            if (accept == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            } else if (accept.contains("application/json") || accept.contains("text/plain")) {
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(service.getStudents());
+            } else {
+                return ResponseEntity.status(501).build();
+            }
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
 }
