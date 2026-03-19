@@ -27,6 +27,16 @@ public class StudentController {
         } else {
             return "Format non supporté";
         }
-
     }
+
+//    @GetMapping("/students")
+//    public String getStudentNames(HttpServletRequest request) {
+//        String accept = request.getHeader("Accept");
+//        if ("text/plain".equalsIgnoreCase(accept)) {
+//            return service.getStudentNames();
+//        } else {
+//            return "Format non supporté";
+//        }
+//    }
+
 }
