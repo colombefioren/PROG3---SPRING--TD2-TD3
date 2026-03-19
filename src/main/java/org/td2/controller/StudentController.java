@@ -22,8 +22,7 @@ public class StudentController {
 
     @GetMapping("/students")
     public String getStudentNames(@RequestHeader("Accept") String accept) {
-        if (accept.toLowerCase().contains("text/plain")
-                || accept.contains("*/*")) {
+        if (accept.toLowerCase().contains("text/plain")) {
             return service.getStudentNames();
         } else {
             return "Format non supporté";
