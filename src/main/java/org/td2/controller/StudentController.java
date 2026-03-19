@@ -22,7 +22,7 @@ public class StudentController {
 
     @GetMapping("/students")
     public String getStudentNames(@RequestHeader("Accept") String accept) {
-        if ("text/plain".equalsIgnoreCase(accept)) {
+        if (accept == null || "text/plain".equalsIgnoreCase(accept)) {
             return service.getStudentNames();
         } else {
             return "Format non supporté";
@@ -32,7 +32,7 @@ public class StudentController {
 //    @GetMapping("/students")
 //    public String getStudentNames(HttpServletRequest request) {
 //        String accept = request.getHeader("Accept");
-//        if ("text/plain".equalsIgnoreCase(accept)) {
+//        if (accept == null || "text/plain".equalsIgnoreCase(accept)) {
 //            return service.getStudentNames();
 //        } else {
 //            return "Format non supporté";
