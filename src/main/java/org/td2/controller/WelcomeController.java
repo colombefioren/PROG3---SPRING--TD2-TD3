@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WelcomeController {
 
     @GetMapping("/welcome")
-    public ResponseEntity<String> welcome(@RequestParam String name) {
+    public ResponseEntity<String> welcome(@RequestParam(required = false) String name) {
         if (name == null || name.isBlank()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
