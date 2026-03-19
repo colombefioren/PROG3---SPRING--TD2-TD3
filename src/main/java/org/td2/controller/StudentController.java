@@ -35,7 +35,7 @@ public class StudentController {
             if (accept == null) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }
-            if (accept.contains("application/json")) {
+            if (accept.toLowerCase().contains("application/json")) {
                 return ResponseEntity.status(HttpStatus.OK)
                         .body(service.getStudents());
             }
