@@ -30,16 +30,16 @@ public class StudentController {
     }
 
     @GetMapping("/students")
-    public ResponseEntity<List<Student>> getStudents(@RequestHeader("Accept") String accept) {
+    public ResponseEntity<List<Student>> getStudents(@RequestHeader(value = "Accept", required = false) String accept) {
         try {
             if (accept == null) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-            } else if (accept.contains("application/json") || accept.contains("text/plain")) {
+            }
+            if (accept.contains("application/json") || accept.contains("text/plain")) {
                 return ResponseEntity.status(HttpStatus.OK)
                         .body(service.getStudents());
-            } else {
-                return ResponseEntity.status(501).build();
             }
+            return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
