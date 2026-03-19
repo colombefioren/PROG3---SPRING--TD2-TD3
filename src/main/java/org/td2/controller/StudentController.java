@@ -29,13 +29,13 @@ public class StudentController {
         }
     }
 
-    @GetMapping("/students")
+    @GetMapping(value = "/students")
     public ResponseEntity<List<Student>> getStudents(@RequestHeader(value = "Accept", required = false) String accept) {
         try {
             if (accept == null) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }
-            if (accept.contains("application/json") || accept.contains("text/plain")) {
+            if (accept.contains("application/json")) {
                 return ResponseEntity.status(HttpStatus.OK)
                         .body(service.getStudents());
             }
