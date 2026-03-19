@@ -26,4 +26,8 @@ public class StudentService {
                 .map(s -> s.getFirstName() + " " + s.getLastName())
                 .collect(Collectors.joining("\n"));
     }
+
+    public List<Student> getStudents() {
+        return repository.getStudents();
+    }
 }
