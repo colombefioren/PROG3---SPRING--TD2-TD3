@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 import org.td2.entity.Student;
 import org.td2.exception.BadRequestException;
 
+import java.util.List;
+
 @Component
 public class StudentValidator {
 
@@ -19,6 +21,15 @@ public class StudentValidator {
         }
         if (s.getAge() <= 0) {
             throw new BadRequestException("Age should be grater than 0");
+        }
+    }
+
+    public void isValid(List<Student> ls) {
+        if (ls == null || ls.isEmpty()) {
+            throw new BadRequestException("Student list is required");
+        }
+        for (Student s : ls) {
+            isValid(s);
         }
     }
 }
