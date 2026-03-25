@@ -17,6 +17,7 @@ public class StudentService {
     private final StudentValidator validator;
 
     public List<Student> createStudents(List<Student> students) {
+        validator.isValid(students);
         return repository.createStudents(students);
     }
 
